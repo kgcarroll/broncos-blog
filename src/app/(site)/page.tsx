@@ -1,7 +1,10 @@
 import Link from 'next/link'
 import {NewsCard, type NewsCardItem} from '@/components/NewsCard'
+import {NewsHero} from '@/components/NewsHero'
 import {sanityFetch} from '@/sanity/lib/live'
 import {NEWS_LIST_LIMITED, SITE_SETTINGS} from '@/sanity/lib/queries'
+
+const HERO_COUNT = 4
 
 export default async function HomePage() {
   const [{data: settings}, {data: news}] = await Promise.all([
@@ -10,46 +13,52 @@ export default async function HomePage() {
   ])
 
   const items = (news ?? []) as NewsCardItem[]
+  const heroItems = items.slice(0, HERO_COUNT)
+  const gridItems = items.slice(HERO_COUNT)
   const title = settings?.title?.trim() || 'Broncos News'
   const tagline = settings?.description?.trim() || 'Unofficial Denver Broncos news and updates.'
 
   return (
     <div>
-      <section className="rounded-2xl border border-broncos-orange/30 bg-gradient-to-br from-broncos-navy via-broncos-navy to-black px-6 py-12 md:px-10 md:py-16">
+      <header className="mb-6 border-b border-white/10 pb-6">
         <p className="text-sm font-semibold uppercase tracking-widest text-broncos-orange">Denver Broncos</p>
-        <h1 className="mt-3 max-w-2xl text-4xl font-bold tracking-tight text-white md:text-5xl">{title}</h1>
-        <p className="mt-4 max-w-xl text-lg text-white/80">{tagline}</p>
-        <Link
-          href="/news"
-          className="mt-8 inline-flex items-center rounded-lg bg-broncos-orange px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-broncos-orange/90"
-        >
-          All news
-        </Link>
-      </section>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl">{title}</h1>
+        <p className="mt-2 max-w-2xl text-white/70">{tagline}</p>
+      </header>
 
-      <section className="mt-12">
-        <div className="flex items-end justify-between gap-4">
-          <h2 className="text-2xl font-bold text-white">Latest news</h2>
-          <Link href="/news" className="text-sm font-medium text-broncos-orange hover:underline">
-            View all
-          </Link>
-        </div>
-        {items.length ? (
+      {heroItems.length > 0 ? (
+        <NewsHero items={heroItems} />
+      ) : (
+        <p className="border border-dashed border-white/20 p-8 text-center text-white/60">
+          No posts yet.{' '}
+          <Link href="/studio" className="text-broncos-orange hover:underline">
+            Open Studio
+          </Link>{' '}
+          to publish your first story.
+        </p>
+      )}
+
+      {gridItems.length > 0 ? (
+        <section className="mt-12">
+          <div className="flex items-end justify-between gap-4">
+            <h2 className="text-2xl font-bold text-white">More news</h2>
+            <Link href="/news" className="text-sm font-medium text-broncos-orange hover:underline">
+              View all
+            </Link>
+          </div>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {items.map((item) => (
+            {gridItems.map((item) => (
               <NewsCard key={item._id} item={item} />
             ))}
           </div>
-        ) : (
-          <p className="mt-8 text-white/60">
-            No posts yet.{' '}
-            <Link href="/studio" className="text-broncos-orange hover:underline">
-              Open Studio
-            </Link>{' '}
-            to publish your first story.
-          </p>
-        )}
-      </section>
+        </section>
+      ) : heroItems.length > 0 ? (
+        <div className="mt-8 text-center">
+          <Link href="/news" className="text-sm font-medium text-broncos-orange hover:underline">
+            View all news
+          </Link>
+        </div>
+      ) : null}
     </div>
   )
 }
