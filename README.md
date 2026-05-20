@@ -38,7 +38,10 @@ NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2025-01-01
 NEXT_PUBLIC_SITE_URL=http://localhost:3333
+SANITY_API_READ_TOKEN=your_viewer_token
 ```
+
+Create the viewer token at [sanity.io/manage](https://www.sanity.io/manage) ? your project ? **API** ? **Tokens** ? **Add API token** with **Viewer** permissions.
 
 ### 3. Install and run
 
@@ -55,6 +58,16 @@ Open [http://localhost:3333](http://localhost:3333). Manage content at [http://l
 2. Create a **News** post and publish it.
 3. View it on the home page and `/news`.
 
+## Visual editing (Presentation tool)
+
+1. Ensure `SANITY_API_READ_TOKEN` is set in `.env.local` (and on Vercel for production preview).
+2. Restart the dev server after adding the token.
+3. Open **Studio** ? **Presentation** (top nav).
+4. The site loads in the preview iframe. Click content on the page to jump to the matching field in the editor.
+5. Drafts update live via the Live Content API.
+
+CORS origins must allow credentials (`http://localhost:3333` and your Vercel URL).
+
 ## Deploy to Vercel
 
 1. Push this repo to GitHub (or deploy from CLI).
@@ -64,6 +77,7 @@ Open [http://localhost:3333](http://localhost:3333). Manage content at [http://l
    - `NEXT_PUBLIC_SANITY_DATASET` ? `production`
    - `NEXT_PUBLIC_SANITY_API_VERSION` ? `2025-01-01`
    - `NEXT_PUBLIC_SITE_URL` ? `https://broncos-blog.vercel.app` (your actual Vercel URL)
+   - `SANITY_API_READ_TOKEN` ? Viewer token (required for Presentation / draft preview)
 4. **Redeploy** after adding env vars (`NEXT_PUBLIC_*` are baked in at build time).
 5. Add the production URL to Sanity **CORS origins** (with credentials enabled for Studio).
 

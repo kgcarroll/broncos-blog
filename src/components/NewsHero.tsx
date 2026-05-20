@@ -3,18 +3,20 @@ import {SanityImage} from '@/components/SanityImage'
 import {formatDate} from '@/lib/formatDate'
 import type {NewsCardItem} from '@/components/NewsCard'
 
-const HERO_COUNT = 4
+export const HERO_COUNT = 6
 
 function HeroTile({
   item,
   priority,
   className,
   titleClassName,
+  imageSizes,
 }: {
   item: NewsCardItem
   priority?: boolean
   className?: string
   titleClassName?: string
+  imageSizes?: string
 }) {
   if (!item.slug) return null
   const href = `/news/${item.slug}`
@@ -28,7 +30,7 @@ function HeroTile({
       {item.coverImage?.asset?._id ? (
         <SanityImage
           value={item.coverImage}
-          sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw"
+          sizes={imageSizes ?? '(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw'}
           className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
           priority={priority}
         />
@@ -64,24 +66,44 @@ export function NewsHero({items}: {items: NewsCardItem[]}) {
     return null
   }
 
-  const [featured, ...rest] = heroItems
+  const [featured, second, third, fourth, fifth, sixth] = heroItems
+  const sideStack = [second, third].filter(Boolean) as NewsCardItem[]
+  const bottomRow = [fourth, fifth, sixth].filter(Boolean) as NewsCardItem[]
 
   return (
-    <section className="grid grid-cols-1 gap-1 lg:grid-cols-3 lg:grid-rows-2">
-      <HeroTile
-        item={featured}
-        priority
-        className="min-h-[300px] lg:col-span-2 lg:row-span-2 lg:min-h-[440px]"
-        titleClassName="text-2xl md:text-3xl lg:text-4xl"
-      />
-      {rest.map((item) => (
+    <section className="flex flex-col gap-1">
+      <div className="grid grid-cols-1 gap-1 lg:grid-cols-3 lg:grid-rows-2">
         <HeroTile
-          key={item._id}
-          item={item}
-          className="min-h-[200px] lg:min-h-[218px]"
-          titleClassName="text-base md:text-lg"
+          item={featured}
+          priority
+          className="min-h-[300px] lg:col-span-2 lg:row-span-2 lg:min-h-[440px]"
+          titleClassName="text-2xl md:text-3xl lg:text-4xl"
+          imageSizes="(max-width: 1023px) 100vw, 66vw"
         />
-      ))}
+        {sideStack.map((item) => (
+          <HeroTile
+            key={item._id}
+            item={item}
+            className="min-h-[200px] lg:min-h-[218px]"
+            titleClassName="text-base md:text-lg"
+            imageSizes="(max-width: 1023px) 100vw, 33vw"
+          />
+        ))}
+      </div>
+
+      {bottomRow.length > 0 ? (
+        <div className="grid grid-cols-1 gap-1 sm:grid-cols-3">
+          {bottomRow.map((item) => (
+            <HeroTile
+              key={item._id}
+              item={item}
+              className="min-h-[200px] sm:min-h-[220px]"
+              titleClassName="text-base md:text-lg"
+              imageSizes="(max-width: 639px) 100vw, 33vw"
+            />
+          ))}
+        </div>
+      ) : null}
     </section>
   )
 }

@@ -1,7 +1,9 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
+import {presentationTool} from 'sanity/presentation'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './src/sanity/schemaTypes'
+import {resolve} from './src/sanity/presentation/resolve'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID?.trim()
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET?.trim() || 'production'
@@ -21,7 +23,19 @@ export default defineConfig({
 
   basePath: '/studio',
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool(),
+    presentationTool({
+      resolve,
+      previewUrl: {
+        origin: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3333',
+        previewMode: {
+          enable: '/api/draft-mode/enable',
+        },
+      },
+    }),
+    visionTool(),
+  ],
 
   schema: {
     types: schemaTypes,

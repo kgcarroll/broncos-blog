@@ -41,12 +41,6 @@ export function SiteHeader({siteTitle, logo}: SiteHeaderProps) {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/studio"
-            className="ml-1 rounded-md border border-broncos-orange/60 px-3 py-2 text-sm font-medium text-broncos-orange transition hover:bg-broncos-orange hover:text-white"
-          >
-            Studio
-          </Link>
         </nav>
       </div>
     </header>

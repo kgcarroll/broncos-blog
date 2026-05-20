@@ -1,6 +1,9 @@
 import {Inter} from 'next/font/google'
 import type {Metadata} from 'next'
 import {Suspense} from 'react'
+import {draftMode} from 'next/headers'
+import {VisualEditing} from 'next-sanity/visual-editing'
+import {DisableDraftMode} from '@/components/DisableDraftMode'
 import {SanityLive, sanityFetch} from '@/sanity/lib/live'
 import {SITE_SETTINGS} from '@/sanity/lib/queries'
 import './globals.css'
@@ -24,7 +27,9 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default async function RootLayout({children}: {children: React.ReactNode}) {
+  const draft = await draftMode()
+
   return (
     <html lang="en" className={inter.variable}>
       <body>
@@ -32,6 +37,12 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <SanityLive />
         </Suspense>
         {children}
+        {draft.isEnabled ? (
+          <>
+            <VisualEditing />
+            <DisableDraftMode />
+          </>
+        ) : null}
       </body>
     </html>
   )

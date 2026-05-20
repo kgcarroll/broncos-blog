@@ -1,10 +1,8 @@
 import Link from 'next/link'
 import {NewsCard, type NewsCardItem} from '@/components/NewsCard'
-import {NewsHero} from '@/components/NewsHero'
+import {NewsHero, HERO_COUNT} from '@/components/NewsHero'
 import {sanityFetch} from '@/sanity/lib/live'
 import {NEWS_LIST_LIMITED, SITE_SETTINGS} from '@/sanity/lib/queries'
-
-const HERO_COUNT = 4
 
 export default async function HomePage() {
   const [{data: settings}, {data: news}] = await Promise.all([
@@ -30,11 +28,7 @@ export default async function HomePage() {
         <NewsHero items={heroItems} />
       ) : (
         <p className="border border-dashed border-white/20 p-8 text-center text-white/60">
-          No posts yet.{' '}
-          <Link href="/studio" className="text-broncos-orange hover:underline">
-            Open Studio
-          </Link>{' '}
-          to publish your first story.
+          No posts published yet. Check back soon.
         </p>
       )}
 
