@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import {SanityImage} from '@/components/SanityImage'
 import {formatDate} from '@/lib/formatDate'
-import type {NewsCardItem} from '@/components/NewsCard'
+import {
+  feedItemDate,
+  feedItemHref,
+  feedItemLabel,
+  feedItemMeta,
+  type FeedItem,
+} from '@/lib/feed'
 
 export const HERO_COUNT = 6
 
@@ -12,15 +18,17 @@ function HeroTile({
   titleClassName,
   imageSizes,
 }: {
-  item: NewsCardItem
+  item: FeedItem
   priority?: boolean
   className?: string
   titleClassName?: string
   imageSizes?: string
 }) {
-  if (!item.slug) return null
-  const href = `/news/${item.slug}`
-  const date = formatDate(item.publishedAt)
+  const href = feedItemHref(item)
+  if (!href) return null
+
+  const date = formatDate(feedItemDate(item))
+  const meta = feedItemMeta(item)
 
   return (
     <Link
@@ -41,10 +49,13 @@ function HeroTile({
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" aria-hidden />
 
       <div className="absolute inset-x-0 bottom-0 p-4 md:p-5">
+        <p className="text-xs font-semibold uppercase tracking-widest text-broncos-orange">
+          {feedItemLabel(item)}
+        </p>
         {date ? (
           <time
-            className="text-xs font-semibold uppercase tracking-widest text-broncos-orange"
-            dateTime={item.publishedAt ?? undefined}
+            className="mt-0.5 block text-xs text-white/70"
+            dateTime={feedItemDate(item) ?? undefined}
           >
             {date}
           </time>
@@ -54,21 +65,22 @@ function HeroTile({
         >
           {item.title}
         </h2>
+        {meta ? <p className="mt-1 line-clamp-1 text-xs text-white/60">{meta}</p> : null}
       </div>
     </Link>
   )
 }
 
-export function NewsHero({items}: {items: NewsCardItem[]}) {
-  const heroItems = items.filter((item) => item.slug).slice(0, HERO_COUNT)
+export function FeedHero({items}: {items: FeedItem[]}) {
+  const heroItems = items.filter((item) => feedItemHref(item)).slice(0, HERO_COUNT)
 
   if (!heroItems.length) {
     return null
   }
 
   const [featured, second, third, fourth, fifth, sixth] = heroItems
-  const sideStack = [second, third].filter(Boolean) as NewsCardItem[]
-  const bottomRow = [fourth, fifth, sixth].filter(Boolean) as NewsCardItem[]
+  const sideStack = [second, third].filter(Boolean) as FeedItem[]
+  const bottomRow = [fourth, fifth, sixth].filter(Boolean) as FeedItem[]
 
   return (
     <section className="flex flex-col gap-1">

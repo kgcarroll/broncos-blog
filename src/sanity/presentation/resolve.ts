@@ -18,6 +18,23 @@ export const resolve: PresentationPluginOptions['resolve'] = {
         ],
       }),
     }),
+    game: defineLocations({
+      select: {
+        title: 'title',
+        seasonYear: 'seasonYear',
+        slug: 'matchupSlug.current',
+      },
+      resolve: (doc) => ({
+        locations: [
+          {
+            title: doc?.title || 'Untitled',
+            href: `/games/${doc?.seasonYear}/${doc?.slug}`,
+          },
+          {title: 'Game reviews', href: '/games'},
+          {title: 'Home', href: '/'},
+        ],
+      }),
+    }),
     siteSettings: defineLocations({
       select: {
         title: 'title',

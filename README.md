@@ -13,7 +13,10 @@ Unofficial Denver Broncos fan blog built with **Next.js**, **Sanity**, and **Ver
 | Type | Description |
 |------|-------------|
 | `news` | News posts (title, slug, date, excerpt, cover image, body) |
+| `game` | Game reviews with portable text recap and 4-quarter box score |
 | `siteSettings` | Site title, tagline, optional logo |
+
+Game reviews live at `/games/{year}/{away-vs-home}` (e.g. `/games/2024/chiefs-vs-broncos`).
 
 ## Local setup
 

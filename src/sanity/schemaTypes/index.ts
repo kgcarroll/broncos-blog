@@ -1,4 +1,5 @@
+import {game} from './game'
 import {news} from './news'
 import {siteSettings} from './siteSettings'
 
-export const schemaTypes = [siteSettings, news]
+export const schemaTypes = [siteSettings, news, game]

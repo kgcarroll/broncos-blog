@@ -13,6 +13,7 @@ type SiteHeaderProps = {
 const nav = [
   {href: '/', label: 'Home'},
   {href: '/news', label: 'News'},
+  {href: '/games', label: 'Games'},
 ]
 
 export function SiteHeader({siteTitle, logo}: SiteHeaderProps) {
