@@ -6,7 +6,7 @@ Unofficial Denver Broncos fan blog built with **Next.js**, **Sanity**, and **Ver
 
 - [Next.js 15](https://nextjs.org/) (App Router)
 - [Sanity](https://www.sanity.io/) CMS with embedded Studio at `/studio`
-- [Tailwind CSS](https://tailwindcss.com/) ù Broncos orange (`#FB4F14`), navy (`#002244`), white
+- [Tailwind CSS](https://tailwindcss.com/) ? Broncos orange (`#FB4F14`), navy (`#002244`), white
 
 ## Content model
 
@@ -59,9 +59,13 @@ Open [http://localhost:3333](http://localhost:3333). Manage content at [http://l
 
 1. Push this repo to GitHub (or deploy from CLI).
 2. Import the project in [vercel.com](https://vercel.com).
-3. Add the same environment variables; set `NEXT_PUBLIC_SITE_URL` to your production URL.
-4. Deploy.
-5. Add the production URL to Sanity **CORS origins**.
+3. In **Settings ? Environment Variables**, add (same values as `.env.local`):
+   - `NEXT_PUBLIC_SANITY_PROJECT_ID` ? required; without it Studio hits `placeholder.api.sanity.io` and fails
+   - `NEXT_PUBLIC_SANITY_DATASET` ? `production`
+   - `NEXT_PUBLIC_SANITY_API_VERSION` ? `2025-01-01`
+   - `NEXT_PUBLIC_SITE_URL` ? `https://broncos-blog.vercel.app` (your actual Vercel URL)
+4. **Redeploy** after adding env vars (`NEXT_PUBLIC_*` are baked in at build time).
+5. Add the production URL to Sanity **CORS origins** (with credentials enabled for Studio).
 
 CLI (requires `vercel login` first):
 
