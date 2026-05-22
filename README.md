@@ -15,6 +15,7 @@ Unofficial Denver Broncos fan blog built with **Next.js**, **Sanity**, and **Ver
 | `news` | News posts (title, slug, date, excerpt, cover image, body) |
 | `game` | Game reviews with portable text recap and 4-quarter box score |
 | `siteSettings` | Site title, tagline, optional logo |
+| `seasonSchedule` | Singleton: 17-game / 18-week schedule, CMS-controlled bye week (default week 10) |
 
 Game reviews live at `/games/{year}/{away-vs-home}` (e.g. `/games/2024/chiefs-vs-broncos`).
 

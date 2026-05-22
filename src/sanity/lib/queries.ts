@@ -1,5 +1,26 @@
 import {defineQuery} from 'next-sanity'
 
+export const SEASON_SCHEDULE = defineQuery(`*[_id == "seasonSchedule"][0]{
+  seasonYear,
+  title,
+  intro,
+  byeWeek,
+  weeks[]{
+    weekNumber,
+    isBye,
+    opponent,
+    isHome,
+    gameDate,
+    tvNetwork,
+    notes,
+    gameReview->{
+      title,
+      seasonYear,
+      "matchupSlug": matchupSlug.current
+    }
+  }
+}`)
+
 export const SITE_SETTINGS = defineQuery(`*[_type == "siteSettings"][0]{
   title,
   description,

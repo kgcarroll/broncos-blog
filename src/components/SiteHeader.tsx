@@ -14,6 +14,7 @@ const nav = [
   {href: '/', label: 'Home'},
   {href: '/news', label: 'News'},
   {href: '/games', label: 'Games'},
+  {href: '/schedule', label: 'Schedule'},
 ]
 
 export function SiteHeader({siteTitle, logo}: SiteHeaderProps) {

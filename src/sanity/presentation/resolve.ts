@@ -35,6 +35,21 @@ export const resolve: PresentationPluginOptions['resolve'] = {
         ],
       }),
     }),
+    seasonSchedule: defineLocations({
+      select: {
+        title: 'title',
+        seasonYear: 'seasonYear',
+      },
+      resolve: (doc) => ({
+        locations: [
+          {
+            title: doc?.title || 'Schedule',
+            href: '/schedule',
+          },
+          {title: 'Home', href: '/'},
+        ],
+      }),
+    }),
     siteSettings: defineLocations({
       select: {
         title: 'title',

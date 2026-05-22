@@ -1,0 +1,168 @@
+{
+  "_id": "seasonSchedule",
+  "_type": "seasonSchedule",
+  "seasonYear": 2025,
+  "title": "Schedule",
+  "intro": "Denver Broncos 2025 regular season schedule. Kickoff times are Mountain Time.",
+  "byeWeek": 10,
+  "weeks": [
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-1",
+      "weekNumber": 1,
+      "opponent": "Kansas City Chiefs",
+      "isHome": false,
+      "gameDate": "2025-09-14T18:15:00-06:00",
+      "tvNetwork": "ESPN/ABC"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-2",
+      "weekNumber": 2,
+      "opponent": "Jacksonville Jaguars",
+      "isHome": true,
+      "gameDate": "2025-09-20T14:05:00-06:00",
+      "tvNetwork": "CBS"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-3",
+      "weekNumber": 3,
+      "opponent": "Los Angeles Rams",
+      "isHome": true,
+      "gameDate": "2025-09-27T18:20:00-06:00",
+      "tvNetwork": "NBC"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-4",
+      "weekNumber": 4,
+      "opponent": "San Francisco 49ers",
+      "isHome": false,
+      "gameDate": "2025-10-04T14:25:00-06:00",
+      "tvNetwork": "CBS"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-5",
+      "weekNumber": 5,
+      "opponent": "Los Angeles Chargers",
+      "isHome": false,
+      "gameDate": "2025-10-11T14:05:00-06:00",
+      "tvNetwork": "CBS"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-6",
+      "weekNumber": 6,
+      "opponent": "Seattle Seahawks",
+      "isHome": true,
+      "gameDate": "2025-10-15T18:15:00-06:00",
+      "tvNetwork": "Prime Video"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-7",
+      "weekNumber": 7,
+      "opponent": "Arizona Cardinals",
+      "isHome": false,
+      "gameDate": "2025-10-25T14:05:00-06:00",
+      "tvNetwork": "CBS"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-8",
+      "weekNumber": 8,
+      "opponent": "Kansas City Chiefs",
+      "isHome": true,
+      "gameDate": "2025-11-01T14:25:00-06:00",
+      "tvNetwork": "CBS"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-9",
+      "weekNumber": 9,
+      "opponent": "Carolina Panthers",
+      "isHome": false,
+      "gameDate": "2025-11-08T11:00:00-06:00",
+      "tvNetwork": "CBS"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-10",
+      "weekNumber": 10,
+      "isBye": true,
+      "notes": "Nov 15"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-11",
+      "weekNumber": 11,
+      "opponent": "Las Vegas Raiders",
+      "isHome": true,
+      "gameDate": "2025-11-22T14:25:00-06:00",
+      "tvNetwork": "CBS"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-12",
+      "weekNumber": 12,
+      "opponent": "Pittsburgh Steelers",
+      "isHome": false,
+      "gameDate": "2025-11-27T13:00:00-06:00",
+      "tvNetwork": "Prime Video"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-13",
+      "weekNumber": 13,
+      "opponent": "Miami Dolphins",
+      "isHome": true,
+      "gameDate": "2025-12-06T14:05:00-06:00",
+      "tvNetwork": "Fox"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-14",
+      "weekNumber": 14,
+      "opponent": "New York Jets",
+      "isHome": false,
+      "gameDate": "2025-12-13T11:00:00-06:00",
+      "tvNetwork": "CBS"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-15",
+      "weekNumber": 15,
+      "opponent": "Las Vegas Raiders",
+      "isHome": false,
+      "gameDate": "2025-12-20T14:25:00-06:00",
+      "tvNetwork": "CBS"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-16",
+      "weekNumber": 16,
+      "opponent": "Buffalo Bills",
+      "isHome": true,
+      "gameDate": "2025-12-25T14:30:00-06:00",
+      "tvNetwork": "Netflix"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-17",
+      "weekNumber": 17,
+      "opponent": "New England Patriots",
+      "isHome": false,
+      "notes": "Jan 2/3 - kickoff TBD"
+    },
+    {
+      "_type": "scheduleWeek",
+      "_key": "week-18",
+      "weekNumber": 18,
+      "opponent": "Los Angeles Chargers",
+      "isHome": true,
+      "notes": "Jan 9/10 - kickoff TBD"
+    }
+  ]
+}

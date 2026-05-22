@@ -1,0 +1,7 @@
+export const SITE_SETTINGS_DOCUMENT_ID = 'siteSettings'
+export const SEASON_SCHEDULE_DOCUMENT_ID = 'seasonSchedule'
+
+export const STRUCTURE_HIDDEN_DOCUMENT_TYPES = [
+  SITE_SETTINGS_DOCUMENT_ID,
+  SEASON_SCHEDULE_DOCUMENT_ID,
+] as const
