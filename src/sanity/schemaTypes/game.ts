@@ -42,8 +42,10 @@ export const game = defineType({
       type: 'slug',
       description: 'Format: away-vs-home (e.g. chiefs-vs-broncos). Auto-generated from team names.',
       options: {
-        source: (doc: {awayTeam?: string; homeTeam?: string}) =>
-          buildMatchupSlug(doc?.awayTeam || '', doc?.homeTeam || ''),
+        source: (doc) => {
+          const {awayTeam, homeTeam} = doc as {awayTeam?: string; homeTeam?: string}
+          return buildMatchupSlug(awayTeam || '', homeTeam || '')
+        },
         slugify: slugifyMatchup,
         maxLength: 96,
       },
